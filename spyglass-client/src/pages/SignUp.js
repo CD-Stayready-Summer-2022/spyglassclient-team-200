@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -128,4 +129,10 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
+=======
+export function SignUp() {
+    return (
+        <h1>SignUp</h1>
+    )
+>>>>>>> eea50194a4f5d8924c29e8f1f651e6d6746e716e
 }
