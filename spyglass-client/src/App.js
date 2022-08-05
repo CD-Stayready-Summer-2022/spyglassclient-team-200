@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Home} from "./pages/Home";
-import { Signin } from "./pages/SignIn";
+import { SignIn } from "./pages/SignIn";
+import { SignUp } from "./pages/SignUp";
 import { Container } from "@mui/material";
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />}/>
-        <Route path ="" element = {<Signin/>}/>
-    
+        <Route path="" element = {<SignIn/>}/>
+        <Route path="/signup" element = {<SignUp/>}/>
       </Routes>
       </BrowserRouter>
     </Container>
