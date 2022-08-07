@@ -3,6 +3,7 @@ import {Home} from "./pages/Home";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Container } from "@mui/material";
+import {CreateGoal} from "./pages/CreateGoal";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/home" element={<Home />}/>
         <Route path="" element = {<SignIn/>}/>
         <Route path="/signup" element = {<SignUp/>}/>
+        <Route path = "/create-goal" element = {<CreateGoal/>}/>
       </Routes>
       </BrowserRouter>
     </Container>

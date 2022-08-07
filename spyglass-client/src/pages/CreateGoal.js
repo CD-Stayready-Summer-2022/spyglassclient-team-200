@@ -4,15 +4,22 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import Icon from '@mui/material/Icon';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
+
+
+
 
 function Copyright(props) {
   return (
@@ -45,67 +52,58 @@ export function CreateGoal() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <Icon>+</Icon>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Create Your Goal
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 12 }}>
+            <Grid container spacing={1}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="given-goal"
+                  name="goal"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="goal-title"
+                  label="Title of your Goal"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+              <Grid item xs={13} sm={10}>
+               <TextareaAutosize
+                maxRows={4}
+                aria-label="maximum height"
+                placeholder="Goal Description"
+                defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua."
+                style={{ width: 200 }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
+                <Button variant="contained" component="label">
+                Upload
+                <input hidden accept="image/*" multiple type="file" />
+            </Button>
+            <IconButton color="primary" aria-label="upload picture" component="label">
+                <input hidden accept="image/*" type="file" />
+                <PhotoCamera />
+            </IconButton>
+         
+                
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
+            
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+            
               </Grid>
             </Grid>
             <Button
@@ -114,13 +112,11 @@ export function CreateGoal() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Create Goal
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+            
               </Grid>
             </Grid>
           </Box>
