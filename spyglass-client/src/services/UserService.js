@@ -13,7 +13,7 @@ export function getAllUsers(){
 export function updateUser(id, user){
     return axios.put(`${USER_BASE_API_URI}/${id}`,user)
 }
-export function deleteEmployee(id){
+export function deleteUser(id){
     return axios.delete(`${USER_BASE_API_URI}/${id}`);
 }
 export function getUserByEmail(email){
