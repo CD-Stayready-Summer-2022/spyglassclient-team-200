@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createUser} from "../services/UserService";
 
 function Copyright(props) {
   return (
@@ -33,10 +34,15 @@ export function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const user = {
+      email: data.get("email"),
+      lastName: data.get("lastName"),
+      password: data.get("password"),
+      firstName: data.get("firstName"),
+    }
+    createUser(user).then(data => {
+        console.log(data);
+    })
   };
 
   return (
@@ -61,12 +67,12 @@ export function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-title"
-                  name="Title"
+                  autoComplete="given-first"
+                  name="First"
                   required
                   fullWidth
-                  id="title"
-                  label="Title"
+                  id="first"
+                  label="First"
                   autoFocus
                 />
               </Grid>
@@ -74,9 +80,9 @@ export function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="description"
-                  label="Description"
-                  name="description"
+                  id="last"
+                  label="Last"
+                  name="last"
                   autoComplete="family-name"
                 />
               </Grid>
