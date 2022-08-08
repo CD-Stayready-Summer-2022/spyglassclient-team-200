@@ -16,8 +16,8 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-
-
+import CurrencyInput from 'react-currency-input-field';
+import ReactDateInputs from 'react-date-inputs';
 
 
 
@@ -52,7 +52,7 @@ export function CreateGoal() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 2,
+            marginTop: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -87,6 +87,41 @@ export function CreateGoal() {
                 style={{ width: 200 }}
                 />
               </Grid>
+            
+              <Grid item xs={12}>
+                <CurrencyInput
+                    id="input-example"
+                    name="input-name"
+                    placeholder="Please enter your target "
+                    defaultValue={0}
+                    decimalsLimit={2}
+                    onValueChange={(value, name) => console.log(value, name)}
+                    />
+              </Grid>
+              
+              <Grid item xs={12}>
+                <CurrencyInput
+                    id="input-example"
+                    name="input-name"
+                    placeholder="enter current saved amount "
+                    defaultValue={0}
+                    decimalsLimit={2}
+                    onValueChange={(value, name) => console.log(value, name)}
+                    />
+            
+              </Grid>
+               <Grid item xs={12}>
+                 <TextField
+                  autoComplete="goal-date"
+                  name="goal"
+                  required
+                  fullWidth
+                  id="goal-date"
+                  label="Target Date"
+                  autoFocus
+                />
+   
+              </Grid>
               <Grid item xs={12}>
                 <Button variant="contained" component="label">
                 Upload
@@ -97,13 +132,6 @@ export function CreateGoal() {
                 <PhotoCamera />
             </IconButton>
          
-                
-              </Grid>
-              <Grid item xs={12}>
-            
-              </Grid>
-              <Grid item xs={12}>
-            
               </Grid>
             </Grid>
             <Button
@@ -116,6 +144,7 @@ export function CreateGoal() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
+                
             
               </Grid>
             </Grid>
