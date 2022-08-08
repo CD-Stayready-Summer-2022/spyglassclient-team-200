@@ -13,6 +13,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import {useState} from 'react';
+import { auth , logInWithEmailAndPassword} from '../services/Firebase'
+import {signInWithEmailAndPassword} from 'firebase/auth'
 function Copyright(props) {
   return (
     <Typography
@@ -34,20 +37,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export  function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentUser, setUser] = useState({});
+  const navigate = useNavigate();
+  const  handleSubmit = () => {
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email: email,
+      password: password,
     });
-  };
-const navigate = useNavigate();
-function goHome() {
-  navigate("/home");
 
-}
+    logInWithEmailAndPassword(email, password)
+      .then((response) => {
+        sessionStorage.setItem("idToken", response.user.accessToken)
+        console.log(response.user);
+        navigate(`/home/${response.user.uid}`);})
+      
+  };
+
+
+
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -87,7 +97,6 @@ function goHome() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -98,6 +107,8 @@ function goHome() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
               <TextField
@@ -108,6 +119,8 @@ function goHome() {
                 label="Password"
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
               />
               <FormControlLabel
@@ -115,10 +128,10 @@ function goHome() {
                 label="Remember me"
               />
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={(e) => handleSubmit()}
               >
                 Sign In
               </Button>

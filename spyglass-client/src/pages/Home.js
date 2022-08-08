@@ -15,13 +15,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useParams } from "react-router-dom";
+import {getAllGoalsFromUser} from '../services/GoalService';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        SpyGlass
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -34,6 +36,22 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const theme = createTheme();
 
 export  function Home() {
+  let { id } = useParams();
+  const [goals, setGoals] = React.useState([]);
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+      getAllGoalsFromUser(id)
+      .then(response => response.data)
+      .then(data => {
+        setGoals(data);
+        console.log(goals);
+                })
+  }, []);
+
+  function addCount() {
+    setCount(count++);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -88,8 +106,8 @@ export  function Home() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {goals.map((goal) => (
+              <Grid item key={goal.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: "100%",
@@ -97,27 +115,26 @@ export  function Home() {
                     flexDirection: "column",
                   }}
                 >
-                  <CardMedia
+                  {/* <CardMedia
                     component="img"
                     sx={{
                       // 16:9
-                      pt: "56.25%",
+                      pt: "20.25%",
                     }}
-                    image="https://source.unsplash.com/random"
+                    image={goal.picture}
                     alt="random"
-                  />
+                  /> */}
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {goal.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                      {goal.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
                     <Button size="small">Edit</Button>
+                    <Button size="small">Delete</Button>
                   </CardActions>
                 </Card>
               </Grid>
