@@ -10,7 +10,7 @@ function App() {
     <Container>
       <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />}/>
+        <Route path="/home/:id" element={<Home />}/>
         <Route path="" element = {<SignIn/>}/>
         <Route path="/signup" element = {<SignUp/>}/>
         <Route path = "/create-goal" element = {<CreateGoal/>}/>

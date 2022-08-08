@@ -14,6 +14,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {createUser} from "../services/UserService";
+import { Routes, useNavigate, BrowserRouter, Route } from "react-router-dom";
+import { Home } from './Home';
+
 
 function Copyright(props) {
   return (
@@ -44,7 +47,12 @@ export function SignUp() {
         console.log(data);
     })
   };
-
+ 
+const navigate = useNavigate();
+function goHome() {
+   
+  navigate("/home");
+}
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -110,12 +118,12 @@ export function SignUp() {
               <Grid item xs={12}>
               </Grid>
             </Grid>
-            <Button
+            <Button 
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            >
+            onClick = {e =>goHome()}>
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
@@ -131,4 +139,4 @@ export function SignUp() {
       </Container>
     </ThemeProvider>
   );
-        }
+}
